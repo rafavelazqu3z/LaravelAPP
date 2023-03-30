@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -41,4 +43,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function name(): Attribute
+    {
+        return new Attribute(
+//            Forma de funcion de flecha =>
+            get: fn($value) => ucwords($value),
+//            Forma de funcion normal
+            set: function($value){
+                return strtolower($value);
+            }
+        );
+
+
+    }
+
+
+//    Como declarar un Accesor en versiones anteriores de laravel
+
+//    public function getNameAttribute($value){
+//        return ucwords($value);
+//    }
+//
+//    Como declarar un Mutador en versiones anteriores de laravel
+
+//    public function setNameAttribute($value){
+//        $this->attributes['name'] = strtolower($value);
+//    }
 }
