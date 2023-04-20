@@ -44,10 +44,15 @@ class CursoController extends Controller
             'descripcion' => 'required',
             'categoria' => 'required'
         ]);
-        
+
 
         $curso->update($request->all());
 
         return redirect()->route('cursos.show', $curso);
+    }
+
+    public function destroy(Curso $curso){
+        $curso->delete();
+        return redirect()->route('cursos.index');
     }
 }
