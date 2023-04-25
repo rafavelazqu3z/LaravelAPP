@@ -22,6 +22,12 @@
         @enderror
         <br>
         <label>
+            Slug:
+            <br>
+            <input type="text" name="slug" value="{{old('name')}}">
+        </label>
+        <br>
+        <label>
             Descripcion:
             <br>
             <textarea name="descripcion" rows="5">{{old('descripcion')}}</textarea>
