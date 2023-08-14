@@ -13,14 +13,13 @@ class ContactanosMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Informacion de contacto";
-
+    public $contacto;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($contacto)
     {
-        //
+        $this->contacto = $contacto;
     }
 
     /**
@@ -29,7 +28,7 @@ class ContactanosMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contactanos Mailable',
+            subject: 'Informacion de contacto',
         );
     }
 
